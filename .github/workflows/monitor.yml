@@ -1,0 +1,37 @@
+name: monitor
+
+# External uptime monitor for the AskMyChurch surfaces. Runs off Cloudflare on
+# purpose: a status page hosted on the platform it monitors is worthless during
+# the outage it exists for. GitHub's cron is best-effort (5-15 min in practice);
+# the page says "about every five minutes" and means it.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe and update status
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+        run: python3 probe.py
+      - name: Commit status
+        run: |
+          git config user.name "vg-status-monitor"
+          git config user.email "monitor@users.noreply.github.com"
+          git add status.json history.json
+          git diff --cached --quiet || git commit -m "probe $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
