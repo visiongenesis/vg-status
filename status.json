@@ -1,26 +1,26 @@
 {
- "updated": 1788686402,
+ "updated": 1788699339,
  "targets": [
   {
    "name": "Assistant platform",
    "url": "https://askmy.church/health",
    "ok": true,
    "code": 200,
-   "ms": 409
+   "ms": 803
   },
   {
    "name": "Pricing",
    "url": "https://askmy.church/pricing",
    "ok": true,
    "code": 200,
-   "ms": 300
+   "ms": 298
   },
   {
    "name": "Marketing site",
    "url": "https://visiongenesisai.com/",
    "ok": true,
    "code": 200,
-   "ms": 217
+   "ms": 200
   }
  ]
 }
