@@ -1,5 +1,5 @@
 {
- "updated": 1792022342,
+ "updated": 1792025257,
  "targets": [
   {
    "name": "Assistant platform",
@@ -13,14 +13,14 @@
    "url": "https://askmy.church/pricing",
    "ok": true,
    "code": 200,
-   "ms": 55
+   "ms": 1001
   },
   {
    "name": "Marketing site",
    "url": "https://visiongenesisai.com/",
    "ok": true,
    "code": 200,
-   "ms": 179
+   "ms": 185
   }
  ]
 }
